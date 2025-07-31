@@ -16,5 +16,9 @@ func GetCommands(characters *flat.Characters) (map[string]Command, error) {
 		Handler:     GetAllHandler(characters),
 		Description: "Show all characters",
 	}
+	commands["start"] = Command{
+		Handler:     StartHandler(characters),
+		Description: `Start a new simulation of a reality Show.`,
+	}
 	return commands, nil
 }

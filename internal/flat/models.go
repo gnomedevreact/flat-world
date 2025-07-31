@@ -3,6 +3,7 @@ package flat
 type Character struct {
 	Name               string
 	Personality        string
+	Gender             string
 	Mood               int
 	Hunger             int
 	Patience           int
@@ -12,6 +13,7 @@ type Character struct {
 	Interests          []string
 	CurrentAction      string
 	TicksSinceLastMeal int
+	LastAction         string
 }
 
 type Characters []Character

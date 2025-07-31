@@ -5,19 +5,34 @@ import (
 	"fmt"
 	"github.com/gnomedevreact/flat-world/internal/commands"
 	"github.com/gnomedevreact/flat-world/internal/flat"
+	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"strings"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	reader := bufio.NewScanner(os.Stdin)
 	characters := flat.Characters{}
 	commands, err := commands.GetCommands(&characters)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Reality Show CLI started. Type 'help'.")
+	fmt.Print(`
+██████╗ ███████╗ █████╗ ██╗     ██╗████████╗██╗   ██╗     ███████╗██╗  ██╗ ██████╗ ██╗    ██╗
+██╔══██╗██╔════╝██╔══██╗██║     ██║╚══██╔══╝╚██╗ ██╔╝     ██╔════╝██║  ██║██╔═══██╗██║    ██║
+██████╔╝█████╗  ███████║██║     ██║   ██║    ╚████╔╝█████╗███████╗███████║██║   ██║██║ █╗ ██║
+██╔═══╝ ██╔══╝  ██╔══██║██║     ██║   ██║     ╚██╔╝ ╚════╝╚════██║██╔══██║██║   ██║██║███╗██║
+██║     ███████╗██║  ██║███████╗██║   ██║      ██║        ███████║██║  ██║╚██████╔╝╚███╔███╔╝
+╚═╝     ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝      ╚═╝        ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚══╝╚══╝ 
+                             WELCOME TO THE REALITY SIMULATION
+                           'help' - list all available commands
+`)
 
 	for {
 		fmt.Print("> ")
